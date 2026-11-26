@@ -16,8 +16,8 @@ button{cursor:pointer}
 .logo{font:800 26px/1.1 ui-monospace,monospace;letter-spacing:3px;padding:10px 12px 28px}
 .logo b{color:var(--green)}
 .nav{display:grid;gap:7px}
-.nav button{border:0;background:transparent;color:var(--text);text-align:left;padding:13px 15px;border-radius:14px;font-size:16px;display:flex;gap:14px;align-items:center}
-.nav button:hover,.nav button.active{background:var(--panel2);color:var(--green)}
+.nav button,.nav-profile{border:0;background:transparent;color:var(--text);text-align:left;padding:13px 15px;border-radius:14px;font-size:16px;display:flex;gap:14px;align-items:center;text-decoration:none}
+.nav button:hover,.nav button.active,.nav-profile:hover{background:var(--panel2);color:var(--green)}
 .nav .glyph{width:23px;text-align:center;font-size:20px}
 .post-cta{margin:20px 4px;background:var(--green);color:#031008;border:0;border-radius:30px;padding:13px;font-weight:800}
 .account{margin-top:auto;display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:10px;border-radius:16px}
@@ -63,9 +63,11 @@ textarea::placeholder{color:#777e88}
 .trend small{display:block;color:var(--muted);margin-top:3px}
 .footer{color:var(--muted);font-size:11px;line-height:1.8;padding:10px}
 .mobile-nav{display:none}
+.mobile-nav a{border:0;background:transparent;color:var(--muted);font-size:20px;padding:6px 12px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.mobile-nav a:hover{color:var(--green)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--green);padding:12px 18px;border-radius:14px;z-index:20;display:none}
-@media(max-width:1000px){.app{grid-template-columns:82px minmax(0,620px) 280px}.sidebar{align-items:center;padding:18px 8px}.logo{font-size:17px;padding:12px 0 25px;letter-spacing:1px}.nav button{justify-content:center;padding:13px}.nav .label,.account .meta,.post-cta span{display:none}.post-cta{width:50px;height:50px;padding:0;border-radius:50%;font-size:22px}.account{padding:5px;border:0;background:transparent}}
-@media(max-width:760px){.app{display:block;padding-bottom:66px}.sidebar,.right{display:none}.main{border:0;max-width:680px;margin:auto}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:10;background:#090a0dee;border-top:1px solid var(--line);justify-content:space-around;padding:9px 5px env(safe-area-inset-bottom)}.mobile-nav button{border:0;background:transparent;color:var(--muted);font-size:20px;padding:6px 12px}.mobile-nav button:hover{color:var(--green)}.topbar{padding:15px}.composer{padding:15px}.post{padding:16px 15px}.compose-tools .small-btn:nth-child(n+3){display:none}}
+@media(max-width:1000px){.app{grid-template-columns:82px minmax(0,620px) 280px}.sidebar{align-items:center;padding:18px 8px}.logo{font-size:17px;padding:12px 0 25px;letter-spacing:1px}.nav button,.nav-profile{justify-content:center;padding:13px}.nav .label,.account .meta,.post-cta span{display:none}.post-cta{width:50px;height:50px;padding:0;border-radius:50%;font-size:22px}.account{padding:5px;border:0;background:transparent}}
+@media(max-width:760px){.app{display:block;padding-bottom:66px}.sidebar,.right{display:none}.main{border:0;max-width:680px;margin:auto}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:10;background:#090a0dee;border-top:1px solid var(--line);justify-content:space-around;padding:9px 5px env(safe-area-inset-bottom)}.topbar{padding:15px}.composer{padding:15px}.post{padding:16px 15px}.compose-tools .small-btn:nth-child(n+3){display:none}}
 </style>
 </head>
 <body>
@@ -78,7 +80,7 @@ textarea::placeholder{color:#777e88}
     <button data-page="Notifications"><span class="glyph">♧</span><span class="label">Notifications</span></button>
     <button data-page="Messages"><span class="glyph">✉</span><span class="label">Messages</span></button>
     <button data-page="Vault"><span class="glyph">▣</span><span class="label">Research Vault</span></button>
-    <button data-page="Profile"><span class="glyph">◉</span><span class="label">Profile</span></button>
+    <a class="nav-profile" href="noctryx-profile-v5.html"><span class="glyph">◉</span><span class="label">Profile</span></a>
     <button data-page="Settings"><span class="glyph">⚙</span><span class="label">Settings</span></button>
   </nav>
   <button class="post-cta" onclick="document.querySelector('#composerText').focus()">＋ <span>Post</span></button>
@@ -134,7 +136,7 @@ textarea::placeholder{color:#777e88}
   <div class="footer">About · Help · Privacy · Community rules<br>NOCTRYX © 2026 · Early preview</div>
 </aside>
 </div>
-<nav class="mobile-nav"><button data-page="Home">⌂</button><button data-page="Explore">⌕</button><button onclick="document.querySelector('#composerText').focus()">＋</button><button data-page="Notifications">♧</button><button data-page="Profile">◉</button></nav>
+<nav class="mobile-nav"><button data-page="Home">⌂</button><button data-page="Explore">⌕</button><button onclick="document.querySelector('#composerText').focus()">＋</button><button data-page="Notifications">♧</button><a href="noctryx-profile-v5.html" aria-label="Profile" title="Profile">◉</a></nav>
 <div class="toast" id="toast"></div>
 <script>
 const $=s=>document.querySelector(s);
