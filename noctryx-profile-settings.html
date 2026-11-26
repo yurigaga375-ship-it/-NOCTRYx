@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090b">
+<title>NOCTRYX — Profile & Settings</title>
+<style>
+:root{--bg:#08090b;--panel:#0e1014;--panel2:#15191e;--line:#262b32;--text:#f1f3f5;--muted:#8b929c;--green:#38f58b;--red:#ff3d55}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{max-width:1160px;margin:auto;display:grid;grid-template-columns:230px minmax(0,720px);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column}
+.logo{font:900 24px ui-monospace,monospace;letter-spacing:2px;padding:8px 12px 30px}.logo span{color:var(--green)}.logo i{font-style:normal;color:var(--red)}
+nav{display:grid;gap:7px}nav button{background:none;border:0;color:var(--text);text-align:left;padding:13px 14px;border-radius:13px;font-size:15px}nav button:hover,nav button.active{background:var(--panel2);color:var(--green)}
+.account-mini{margin-top:auto;border:1px solid var(--line);border-radius:15px;padding:10px;display:flex;gap:10px;align-items:center}
+.avatar{width:46px;height:46px;border-radius:50%;border:1px solid var(--green);background:radial-gradient(circle at 50% 35%,#29312f 0 22%,#101315 24% 57%,#183b2a 58%);display:grid;place-items:center;font-size:23px;flex-shrink:0}
+.main{min-width:0}.top{position:sticky;top:0;background:#08090beF;backdrop-filter:blur(12px);z-index:4;border-bottom:1px solid var(--line);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}.top h1{font-size:20px;margin:0}.status{font:11px ui-monospace,monospace;color:var(--green);border:1px solid #24583b;background:#0d2117;padding:5px 9px;border-radius:20px}
+.content{padding:24px;max-width:720px}.hero{border:1px solid var(--line);background:linear-gradient(145deg,#141a17,#0e1014 60%);border-radius:20px;overflow:hidden;margin-bottom:22px}
+.cover{height:125px;background:radial-gradient(ellipse at 80% 30%,#245d3c 0,#10281b 30%,#111419 70%);position:relative}.cover:after{content:"NOCTRYX";position:absolute;right:20px;bottom:12px;font:800 16px ui-monospace,monospace;letter-spacing:4px;color:#c6ffd9;opacity:.55}
+.hero-bottom{padding:0 20px 20px}.hero-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:-34px;gap:10px}.bigavatar{width:88px;height:88px;border-radius:50%;border:3px solid var(--bg);outline:1px solid var(--green);background:radial-gradient(circle at 50% 34%,#36413c 0 22%,#121619 24% 57%,#174a2d 58%);display:grid;place-items:center;font-size:39px;cursor:pointer}.edit-btn{border:1px solid var(--line);background:#14181c;color:var(--text);border-radius:22px;padding:9px 16px;font-weight:700}.hero h2{margin:12px 0 2px;font-size:21px}.handle{font:13px ui-monospace,monospace;color:var(--muted)}.bio{color:#d4d8dc;margin:12px 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}.meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}.meta span{display:flex;gap:5px;align-items:center}
+.section{border:1px solid var(--line);background:var(--panel);border-radius:18px;margin-bottom:16px;overflow:hidden}.section-head{padding:17px 20px;border-bottom:1px solid var(--line)}.section-head h3{margin:0;font-size:16px}.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.section-body{padding:20px}
+.field{margin-bottom:17px}.field:last-child{margin-bottom:0}label{display:block;font-size:12px;color:#c5cbd0;font-weight:750;letter-spacing:.3px;margin-bottom:8px}
+input,textarea,select{width:100%;background:#090b0e;border:1px solid #2a3037;border-radius:11px;padding:12px 13px;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #38f58b12}textarea{min-height:86px;resize:vertical}select{color-scheme:dark}.counter{text-align:right;color:var(--muted);font-size:11px;margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.avatars{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}.avatar-choice{aspect-ratio:1;border-radius:50%;border:1px solid #343b43;background:#171c20;color:#e8edf0;font-size:24px;display:grid;place-items:center;cursor:pointer}.avatar-choice:hover,.avatar-choice.selected{border:2px solid var(--green);box-shadow:0 0 0 3px #38f58b18}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}.toggle-row:last-child{border-bottom:0}.toggle-row strong{font-size:14px}.toggle-row p{margin:3px 0 0;color:var(--muted);font-size:12px}.switch{appearance:none;width:44px;height:25px;border-radius:20px;background:#30363d;position:relative;cursor:pointer;flex-shrink:0;padding:0;border:0}.switch:before{content:"";position:absolute;width:19px;height:19px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.18s}.switch:checked{background:var(--green)}.switch:checked:before{left:22px;background:#07140b}
+.actions{display:flex;gap:10px;justify-content:flex-end;margin:20px 0}.btn{border:1px solid var(--line);background:#15191e;color:var(--text);border-radius:25px;padding:11px 18px;font-weight:800;cursor:pointer}.btn.primary{background:var(--green);color:#07130b;border-color:var(--green)}.btn:hover{filter:brightness(1.08)}
+.note{background:#101b14;border:1px solid #2a5038;border-radius:12px;color:#b9e8c8;padding:12px;font-size:12px;line-height:1.6}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:none;background:#151a1e;border:1px solid var(--green);padding:12px 17px;border-radius:12px;z-index:10}
+@media(max-width:760px){.app{display:block;padding-bottom:62px}.sidebar{display:none}.content{padding:14px}.top{padding:16px}.grid2{grid-template-columns:1fr}.avatars{grid-template-columns:repeat(6,1fr)}.mobile-nav{display:flex!important}}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#090b0df2;border-top:1px solid var(--line);justify-content:space-around;padding:10px;z-index:8}.mobile-nav button{background:none;border:0;color:var(--muted);font-size:20px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="logo">NOCT<i>R</i><span>YX</span></div>
+<nav>
+<button>⌂　Home</button><button>⌕　Explore</button><button>♧　Notifications</button><button>✉　Messages</button><button>▣　Research Vault</button><button class="active">◉　Profile & Settings</button>
+</nav>
+<div class="account-mini"><div class="avatar" id="miniAvatar">◈</div><div><strong id="miniName">Noctryx Member</strong><div class="handle" id="miniHandle">@member</div></div></div>
+</aside>
+<main class="main">
+<header class="top"><h1>Profile & settings</h1><span class="status">● LOCAL PREVIEW</span></header>
+<div class="content">
+<section class="hero">
+<div class="cover"></div>
+<div class="hero-bottom">
+<div class="hero-row"><div class="bigavatar" id="profileAvatar" title="Choose avatar">◈</div><button class="edit-btn" onclick="document.getElementById('displayName').focus()">Edit profile</button></div>
+<h2 id="previewName">Noctryx Member</h2><div class="handle" id="previewHandle">@member</div>
+<p class="bio" id="previewBio">Add a bio to introduce yourself to the NOCTRYX community.</p>
+<div class="meta"><span>⌖ <b id="previewLocation">Location not set</b></span><span>◷ Joined today</span></div>
+</div></section>
+
+<section class="section"><div class="section-head"><h3>Personal profile</h3><p>Shape how people see you on NOCTRYX.</p></div><div class="section-body">
+<div class="grid2">
+<div class="field"><label for="displayName">DISPLAY NAME</label><input id="displayName" maxlength="40" value="Noctryx Member" placeholder="Your display name"></div>
+<div class="field"><label for="username">USERNAME</label><input id="username" maxlength="20" value="member" placeholder="username"><div class="counter">Unique handle · preview</div></div>
+</div>
+<div class="field"><label for="bioInput">BIO</label><textarea id="bioInput" maxlength="160" placeholder="Tell the community a little about yourself..."></textarea><div class="counter"><span id="bioCount">0</span>/160</div></div>
+<div class="field"><label>PROFILE PICTURE</label><div class="avatars" id="avatarChoices"></div><div class="counter">Choose a preview avatar. More avatar packs can be added later.</div></div>
+</div></section>
+
+<section class="section"><div class="section-head"><h3>Location & language</h3><p>Optional preferences for your experience.</p></div><div class="section-body">
+<div class="grid2">
+<div class="field"><label for="location">LOCATION</label><input id="location" maxlength="60" placeholder="City, country (optional)"></div>
+<div class="field"><label for="language">LANGUAGE</label><select id="language"><option value="en">English</option><option value="yo">Yorùbá</option><option value="ha">Hausa</option><option value="ig">Igbo</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ar">العربية</option><option value="hi">हिन्दी</option></select></div>
+</div>
+<div class="field"><label for="timezone">TIME ZONE</label><select id="timezone"><option>Africa/Lagos (WAT, UTC+1)</option><option>Europe/London</option><option>Europe/Paris</option><option>America/New_York</option><option>Asia/Dubai</option><option>Asia/Kolkata</option><option>Asia/Tokyo</option></select></div>
+</div></section>
+
+<section class="section"><div class="section-head"><h3>Appearance & privacy</h3><p>More controls will be added as NOCTRYX grows.</p></div><div class="section-body">
+<div class="field"><label for="theme">PROFILE ACCENT</label><select id="theme"><option value="green">NOCTRYX Green</option><option value="red">Blood Red</option><option value="neutral">Silver</option></select></div>
+<div class="toggle-row"><div><strong>Show location on profile</strong><p>Your location is hidden unless you enable this.</p></div><input class="switch" id="showLocation" type="checkbox"></div>
+<div class="toggle-row"><div><strong>Private profile</strong><p>Preview setting; account privacy will be enforced by the backend later.</p></div><input class="switch" id="privateProfile" type="checkbox"></div>
+<div class="toggle-row"><div><strong>Allow direct messages</strong><p>Choose who can message you when messaging is connected.</p></div><input class="switch" id="allowDM" type="checkbox" checked></div>
+</div></section>
+
+<div class="note">This is a profile/settings prototype. Changes are saved in this browser only. Cloud profiles, unique username checks, and account authentication will be connected later.</div>
+<div class="actions"><button class="btn" id="resetBtn">Reset preview</button><button class="btn primary" id="saveBtn">Save changes</button></div>
+</div>
+</main>
+</div>
+<nav class="mobile-nav"><button>⌂</button><button>⌕</button><button>＋</button><button>♧</button><button>◉</button></nav>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const avatarSet=['◈','⌬','☾','⚡','♜','♠','☣','✦','⟁','◉','♟','𖤐','☯','⌁','◆','⛧'];
+let selectedAvatar='◈';
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2400)}
+function renderAvatarChoices(){const box=$('avatarChoices');box.innerHTML='';avatarSet.forEach(symbol=>{const b=document.createElement('button');b.type='button';b.className='avatar-choice'+(symbol===selectedAvatar?' selected':'');b.textContent=symbol;b.setAttribute('aria-label','Choose avatar '+symbol);b.addEventListener('click',()=>{selectedAvatar=symbol;renderAvatarChoices();updatePreview()});box.appendChild(b)})}
+function updatePreview(){const name=$('displayName').value.trim()||'Noctryx Member';const handle=$('username').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()||'member';$('previewName').textContent=name;$('miniName').textContent=name;$('previewHandle').textContent='@'+handle;$('miniHandle').textContent='@'+handle;$('previewBio').textContent=$('bioInput').value.trim()||'Add a bio to introduce yourself to the NOCTRYX community.';$('bioCount').textContent=$('bioInput').value.length;$('profileAvatar').textContent=selectedAvatar;$('miniAvatar').textContent=selectedAvatar;$('previewLocation').textContent=$('showLocation').checked&&$('location').value.trim()?$('location').value.trim():'Location not set';document.documentElement.style.setProperty('--green',$('theme').value==='red'?'#ff3d55':$('theme').value==='neutral'?'#b7c1ca':'#38f58b')}
+['displayName','username','bioInput','location','showLocation','theme'].forEach(id=>$(id).addEventListener('input',updatePreview));
+$('saveBtn').addEventListener('click',()=>{const profile={displayName:$('displayName').value,username:$('username').value,bio:$('bioInput').value,location:$('location').value,language:$('language').value,timezone:$('timezone').value,theme:$('theme').value,avatar:selectedAvatar,showLocation:$('showLocation').checked,privateProfile:$('privateProfile').checked,allowDM:$('allowDM').checked};try{localStorage.setItem('noctryx_profile_preview',JSON.stringify(profile));toast('Profile preview saved on this device.')}catch(e){toast('Could not save in this browser.')}updatePreview()});
+$('resetBtn').addEventListener('click',()=>{if(!confirm('Reset this profile preview?'))return;localStorage.removeItem('noctryx_profile_preview');location.reload()});
+try{const saved=JSON.parse(localStorage.getItem('noctryx_profile_preview')||'null');if(saved){Object.keys(saved).forEach(key=>{const el=$(key);if(el)el.value=saved[key]});selectedAvatar=saved.avatar||'◈';['showLocation','privateProfile','allowDM'].forEach(key=>$(key).checked=!!saved[key])}}catch(e){}
+renderAvatarChoices();updatePreview();
+</script>
+</body>
+</html>
